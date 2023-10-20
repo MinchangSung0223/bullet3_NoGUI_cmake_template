@@ -21,6 +21,8 @@ BULLET_PHYSICS_SOURCE_DIR, BULLET_PHYSICS_LIB가 설정된 상태에서
 예제는 GUI없이 plane.urdf를 불러오고 1000Hz로 stepSimulation을 진행합니다.
 
 ```bash
+git clone https://github.com/MinchangSung0223/bullet3_NoGUI_cmake_template.git
+cd bullet3_NoGUI_cmake_template
 mkdir build
 cd build
 cmake .. -DBULLET_PHYSICS_SOURCE_DIR=${BULLET_PHYSICS_SOURCE_DIR} -DBULLET_PHYSICS_LIB=${BULLET_PHYSICS_LIB}
