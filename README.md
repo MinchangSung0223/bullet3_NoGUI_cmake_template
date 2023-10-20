@@ -26,4 +26,6 @@ cd bullet3_NoGUI_cmake_template
 mkdir build
 cd build
 cmake .. -DBULLET_PHYSICS_SOURCE_DIR=${BULLET_PHYSICS_SOURCE_DIR} -DBULLET_PHYSICS_LIB=${BULLET_PHYSICS_LIB}
+make j$(nproc)
+./hello
 ```
