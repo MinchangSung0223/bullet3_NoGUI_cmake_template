@@ -1,5 +1,7 @@
 # bullet3_NoGUI_cmake_template
 # bullet3 install
+먼저 bullet3를 build해야 합니다. 
+임의의 폴더에 bullet3를 내려받고 다음과정대로 build를 진행합니다.
 ```bash
   git clone https://github.com/bulletphysics/bullet3.git
   cd bullet3  
@@ -12,6 +14,12 @@
   cd local_install/lib
   echo 'export BULLET_PHYSICS_LIB=' echo ${PWD} >> ~/.bashrc
 ```
+
+# template build
+BULLET_PHYSICS_SOURCE_DIR, BULLET_PHYSICS_LIB가 설정된 상태에서 
+다음의 명령어로 빌드를 진행합니다.
+예제는 GUI없이 plane.urdf를 불러오고 1000Hz로 stepSimulation을 진행합니다.
+
 ```bash
 mkdir build
 cd build
