@@ -2,14 +2,18 @@
 # bullet3 install
 ```bash
   git clone https://github.com/bulletphysics/bullet3.git
-  cd bullet3
-  export BULLET_PHYSICS_SOURCE_DIR=${PWD}
+  cd bullet3  
+  echo 'export BULLET_PHYSICS_SOURCE_DIR=${PWD}' >> ~/.bashrc
   ./build_cmake_pybullet_double.sh
   cd build_cmake
+  cmake  -DUSE_DOUBLE_PRECISION=ON -DCMAKE_DEBUG_POSTFIX="" -DINSTALL_LIBS=ON -DCMAKE_BUILD_TYPE=Release  -DCMAKE_INSTALL_PREFIX:PATH=local_install  ..
+  make -j$(nproc)
   sudo make install
+  cd local_install/lib
+  echo 'export BULLET_PHYSICS_LIB=${PWD}' >> ~/.bashrc
 ```
 ```bash
 mkdir build
 cd build
-cmake .. -DBULLET_PHYSICS_SOURCE_DIR=/path/to/bullet3 -DBULLET_PHYSICS_LIB=/usr/lib
+cmake .. -DBULLET_PHYSICS_SOURCE_DIR=${BULLET_PHYSICS_SOURCE_DIR} -DBULLET_PHYSICS_LIB=${BULLET_PHYSICS_LIB}
 ```
