@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/robot/robot_ws/bullet3_NoGUI_cmake_template/build",
+  "command": "/usr/bin/g++  -DBT_USE_DOUBLE_PRECISION -I/usr/local/include/bullet  -g   -o CMakeFiles/hello_bullet_cmake.dir/src/test.cpp.o -c /home/robot/robot_ws/bullet3_NoGUI_cmake_template/src/test.cpp",
+  "file": "/home/robot/robot_ws/bullet3_NoGUI_cmake_template/src/test.cpp"
+}
+]

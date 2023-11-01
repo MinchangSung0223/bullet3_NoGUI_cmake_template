@@ -1,7 +1,5 @@
-
-
-#include "b3RobotSimulatorClientAPI_NoGUI.h"
-#include "../Utils/b3Clock.h"
+#include "SharedMemory/b3RobotSimulatorClientAPI_NoGUI.h"
+#include "Utils/b3Clock.h"
 #include "LinearMath/btVector3.h"
 #include "btBulletDynamicsCommon.h"
 #include <stdio.h>
