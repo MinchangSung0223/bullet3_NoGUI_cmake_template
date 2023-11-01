@@ -1,26 +1,34 @@
 cmake_minimum_required(VERSION 3.0)
 PROJECT(test_bullet)
 
-set(BULLET_PHYSICS_SOURCE_DIR  "/opt/bullet3")
-set(BULLET_PHYSICS_LIB  "/opt/bullet3/build_cmake/local_install/lib")
+include(GNUInstallDirs)
+include(CMakePackageConfigHelpers)
+include(FindPkgConfig)
+include(modules/CMakeFunctions.cmake)
 
+set(CMAKE_INSTALL_PREFIX ${PROJECT_SOURCE_DIR})
+set(PROJ_INSTALL_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/bin/inc)
+set(PROJ_INSTALL_BIN_DIR ${PROJECT_SOURCE_DIR}/bin)
+set(PROJ_INSTALL_LIB_DIR ${PROJECT_SOURCE_DIR}/lib)
 
-INCLUDE_DIRECTORIES( 
-		${BULLET_PHYSICS_SOURCE_DIR}/src
-		${BULLET_PHYSICS_SOURCE_DIR}/examples
-		${BULLET_PHYSICS_SOURCE_DIR}/examples/SharedMemory
-		${BULLET_PHYSICS_SOURCE_DIR}/examples/ThirdPartyLibs
-		${BULLET_PHYSICS_SOURCE_DIR}/examples/ThirdPartyLibs/enet/include
-		${BULLET_PHYSICS_SOURCE_DIR}/examples/ThirdPartyLibs/clsocket/src
-  )
+set(CMAKE_DEBUG_POSTFIX "d")
+set(CMAKE_MODULE_PATH  ${CMAKE_CURRENT_SOURCE_DIR}/modules)
+set(BUILD_SHARED_LIBS TRUE)
+
 SET(RobotSimulator_NoGUI_SRCS
   src/test.cpp
 )
 ADD_EXECUTABLE(hello_bullet_cmake  ${RobotSimulator_NoGUI_SRCS})
-#SET_TARGET_PROPERTIES(hello_bullet_cmake PROPERTIES VERSION ${BULLET_VERSION})
-#SET_TARGET_PROPERTIES(hello_bullet_cmake PROPERTIES DEBUG_POSTFIX "_d")
 
-TARGET_LINK_LIBRARIES(hello_bullet_cmake BulletRobotics BulletFileLoader BulletWorldImporter BulletSoftBody BulletDynamics BulletCollision BulletInverseDynamicsUtils BulletInverseDynamics LinearMath Bullet3Common)
+# Bullet
+find_package(Bullet)
+if (BULLET_FOUND)
+	MESSAGE(STATUS "BULLET_INCLUDE_DIRS = ${BULLET_INCLUDE_DIRS}")
+	MESSAGE(STATUS "BULLET_LIBRARIES = ${BULLET_LIBRARIES}")
+	target_include_directories(hello_bullet_cmake PUBLIC ${BULLET_INCLUDE_DIRS})
+	target_link_libraries(hello_bullet_cmake ${BULLET_LIBRARIES})
+endif()
+
 target_compile_definitions(hello_bullet_cmake PUBLIC -DBT_USE_DOUBLE_PRECISION)
 IF(WIN32)
 	IF(BUILD_ENET OR BUILD_CLSOCKET)
